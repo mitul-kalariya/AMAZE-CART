@@ -1,0 +1,57 @@
+{% extends 'base_template.html' %}
+{% load crispy_forms_tags %}
+{% block content %}
+
+    <div class="d-flex align-items-center justify-content-center w-100" style="padding-top: 200px">
+        <div class="container w-50">
+            {% if invalid %}
+                <div class="row-md-5">
+                    <div class="alert alert-danger" role="alert">
+                        unable to find you, try again
+                    </div>
+                </div>
+            {% endif %}
+            <div class="row-md-5">
+                <div class="col">
+                    <form method="POST">
+                        {% csrf_token %}
+                        {{ form }}
+                            {% comment %}
+                                <!-- Email input -->
+                                          <div class="form-outline">
+                                            <input name="username" id="form2Example1" class="form-control" />
+                                            <label class="form-label" for="form2Example1">Username</label>
+                                          </div>
+                                
+                                          <!-- Password input -->
+                                          <div class="form-outline">
+                                            <input
+                                              type="password"
+                                              id="form2Example2"
+                                              name="password"
+                                              class="form-control"
+                                            />
+                                            <label class="form-label" for="form2Example2">Password</label>
+                                          </div>
+                            {% endcomment %}
+
+                            <!-- Submit button -->
+                            <div class="continer d-flex align-items-center justify-content-center p-4">
+                                <button type="submit" class="btn btn-primary btn-block w-25">
+                                    Sign in
+                                </button>
+                            </div>
+
+                            <!-- Register buttons -->
+                            <div class="text-center p-4">
+                                <p>Not a member?
+                                    <a href="{% url 'signup' %}">Register</a>
+                                </p>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    {% endblock %}

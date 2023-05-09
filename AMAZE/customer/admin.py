@@ -1,6 +1,25 @@
 from django.contrib import admin
-from customer.models import customer,product
+from customer.models import customer, product
+from django.contrib.auth.admin import UserAdmin
+
+
+# class CustomUserAdmin(UserAdmin):
+#     fieldsets = (
+#         *UserAdmin.fieldsets,
+#         (
+#             "Extra info",
+#             {"fields": ("dob", "gender", "phone")},
+#         ),
+#     )
+# admin.site.register(customer, CustomUserAdmin)
+
 
 # Register your models here.
-admin.site.register(customer)
+fields = list(UserAdmin.fieldsets)
+fields[1] = (
+    "Personal Info",
+    {"fields": ("first_name", "last_name", "email", "dob", "gender", "phone")},
+)
+UserAdmin.fieldsets = tuple(fields)
+admin.site.register(customer, UserAdmin)
 admin.site.register(product)

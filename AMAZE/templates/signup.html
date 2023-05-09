@@ -1,0 +1,39 @@
+{% extends 'base_template.html'%} {% block content %}
+
+<div
+  class="d-flex align-items-center justify-content-center w-100"
+  style="padding-top: 200px"
+>
+  <div class="container w-50">
+    {% comment %} {% if invalid %}
+    <div class="row-md-5">
+      <div class="alert alert-danger" role="alert">
+        unable to find you, try again
+      </div>
+    </div>
+    {% endif %} {% endcomment %}
+    <div class="row-md-5">
+      <div class="col">
+        <form method="POST">
+          {% csrf_token %} 
+          
+          {{form}} 
+          <div
+            class="continer d-flex align-items-center justify-content-center p-4"
+          >
+            <button type="submit" class="btn btn-primary btn-block w-25">
+              Register
+            </button>
+          </div>
+
+          <!-- Register buttons -->
+          <div class="text-center p-4">
+            <p>Already a member? <a href="#!">Register</a></p>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+
+{% endblock %}
