@@ -11,6 +11,13 @@
                     </div>
                 </div>
             {% endif %}
+            {% if user_created %}
+                <div class="row-md-5">
+                    <div class="alert alert-success" role="alert">
+                        <b>User Created: <b><small>please login to get started</small>
+                    </div>
+                </div>
+            {% endif %}
             <div class="row-md-5">
                 <div class="col">
                     <form method="POST">
