@@ -10,3 +10,5 @@ class customer(AbstractUser):
         choices=genders
     )
     phone = models.CharField(max_length=10,null=True,blank=True)
+
+    
