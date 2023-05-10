@@ -37,9 +37,12 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+
+    #customs
     'crispy_forms',
     'crispy_bootstrap4',
     'customer',
+    'products',
 ]
 
 CRISPY_ALLOWED_TEMPLATE_PACKS = "bootstrap4"
@@ -86,8 +89,11 @@ WSGI_APPLICATION = 'AMAZE.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': 'AMAZE',
+        'USER': 'postgres',
+        'PASSWORD':'admin',
+        'HOST':'localhost'
     }
 }
 

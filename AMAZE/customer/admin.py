@@ -1,5 +1,5 @@
 from django.contrib import admin
-from customer.models import customer, product
+from customer.models import customer
 from django.contrib.auth.admin import UserAdmin
 
 
@@ -22,4 +22,3 @@ fields[1] = (
 )
 UserAdmin.fieldsets = tuple(fields)
 admin.site.register(customer, UserAdmin)
-admin.site.register(product)
