@@ -34,8 +34,12 @@ class search_view(LoginRequiredMixin,ListView):
             query = self.request.POST.get('query')
             # qs = Products.objects.annotate(rank=SearchRank(SearchVector('name'), SearchQuery(query))).order_by('-rank')
             start_time = time.perf_counter()
-            qs =  Products.objects.annotate(search=SearchVector('name','main_category','sub_category' ),).filter(search=SearchQuery(query))
-            data = {"queryset":qs,"time":str(time.perf_counter()-start_time), "query":query }
+            qs =  Products.objects.annotate(search=SearchVector(
+                'name',
+                # 'main_category',
+                # 'sub_category' 
+                ),).filter(search=SearchQuery(query))
+            data = {"queryset":qs,"time":str(time.perf_counter()-start_time), "query":query,"no_of_results":len(qs) }
             return data
         else:
             return []
