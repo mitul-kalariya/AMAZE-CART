@@ -44,7 +44,21 @@ INSTALLED_APPS = [
     'crispy_bootstrap4',
     'customer',
     'products',
+    'rest_framework',
+    'django_elasticsearch_dsl',
+    'django_elasticsearch_dsl_drf'
 ]
+
+ELASTICSEARCH_DSL={
+    'default': {
+        'hosts': 'localhost:9200',
+        'http_auth': ('elastic', 'root'),
+    },
+      "query": {
+        "match_all": {}
+    },
+    "size": 1000
+}
 
 CRISPY_ALLOWED_TEMPLATE_PACKS = "bootstrap4"
 CRISPY_TEMPLATE_PACK = "bootstrap4"

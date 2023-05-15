@@ -4,6 +4,14 @@ from django.views.generic import ListView,View
 from products.models import Products
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.postgres.search import SearchVector, SearchQuery, SearchRank
+from django_elasticsearch_dsl_drf.viewsets import DocumentViewSet
+from .documents import ProductsDocument
+from .serializers import ProductsDocumentSerializer
+from django_elasticsearch_dsl_drf.filter_backends import (
+    FilteringFilterBackend,
+    CompoundSearchFilterBackend
+)
+
 # Create your views here.
 
 # class home_view(ListView):
@@ -43,3 +51,16 @@ class search_view(LoginRequiredMixin,ListView):
             return data
         else:
             return []
+
+
+class ProductsDocumentView(DocumentViewSet):
+    document = ProductsDocument
+    serializer_class = ProductsDocumentSerializer
+    filter_backends = [
+        FilteringFilterBackend,
+        CompoundSearchFilterBackend,
+    ]
+
+    search_fields = ('title','main_category','sub_category')
+    multi_match_search_fields = ('title','main_category','sub_category')
+    filter_fields = {'title':'title','main_category':"main_category",'sub_category':'sub_category'}
