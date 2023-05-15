@@ -2,14 +2,14 @@ from django_elasticsearch_dsl import Document, fields, Index
 from .models import Products
 
 
-PUBLISHER_INDEX = Index("products_index_elastic")
-PUBLISHER_INDEX.settings(
+PRODUCTS_INDEX = Index("products_index_elastic")
+PRODUCTS_INDEX.settings(
     number_of_shards=1,
     number_of_replicas=1,
 )
 
 
-@PUBLISHER_INDEX.doc_type
+@PRODUCTS_INDEX.doc_type
 class ProductsDocument(Document):
     id = fields.IntegerField(attr="id")
     name = fields.TextField(fields={"raw": {"type": "keyword"}})
