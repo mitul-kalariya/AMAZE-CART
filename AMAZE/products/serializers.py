@@ -9,8 +9,12 @@ class ProductsDocumentSerializer(DocumentSerializer):
 
         fields = ('id','name','main_category','sub_category','image','link','ratings','no_of_ratings','discount_price','actual_price')
 
+        
         def get_location(self, obj):
             try:
                 return obj.location.to_dict()
             except:
                 return {}
+        
+        def get(self,obj):
+            pass
