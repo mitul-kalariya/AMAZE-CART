@@ -141,3 +141,5 @@ DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 
 
 AUTH_USER_MODEL = "authenticate.user"  # displays user model in authenticate application
+LOGIN_REDIRECT_URL = "auth/login/"
+LOGIN_URL = 'auth/login/'

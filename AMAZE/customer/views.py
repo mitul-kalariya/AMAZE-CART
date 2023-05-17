@@ -1,9 +1,20 @@
-from django.shortcuts import render
-from django.views.generic import ListView
+from typing import Any, Optional
+from django.urls import reverse
+from django.utils.decorators import method_decorator
+from django.contrib.auth.decorators import login_required
+from django.views.generic.base import TemplateView,RedirectView
 
 # Create your views here.
 
-class HomeView(ListView):
-    pass
-class SearchView(ListView):
+class HomeView(TemplateView):
+    template_name = 'Home/homepage.html'
+
+@method_decorator(login_required(login_url='/auth/login'), name='dispatch')
+class PreSellerRequestView(RedirectView):
+    pattern_name = "seller:become_a_seller"
+
+    def get_redirect_url(self, *args: Any, **kwargs: Any) -> str | None:
+        return super().get_redirect_url(*args, **kwargs)
+    
+class SearchView(TemplateView):
     pass
