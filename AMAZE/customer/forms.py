@@ -3,9 +3,6 @@ from django.contrib.auth.forms import UserCreationForm,AuthenticationForm
 from customer.models import customer
 from django.contrib.auth.models import User
 
-
-
-
 class SignupForm(UserCreationForm):
     dob = forms.DateField(widget=forms.TextInput(attrs={'type': 'date'}))
     class Meta:
