@@ -4,26 +4,38 @@ from django.db import migrations, models
 
 
 class Migration(migrations.Migration):
-
     initial = True
 
-    dependencies = [
-    ]
+    dependencies = []
 
     operations = [
         migrations.CreateModel(
-            name='Products',
+            name="Products",
             fields=[
-                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('name', models.CharField(max_length=200)),
-                ('main_category', models.CharField(max_length=200)),
-                ('sub_category', models.CharField(max_length=200)),
-                ('image', models.CharField(max_length=200)),
-                ('link', models.CharField(max_length=200)),
-                ('ratings', models.CharField(blank=True, max_length=200, null=True)),
-                ('no_of_ratings', models.CharField(blank=True, max_length=200, null=True)),
-                ('discount_price', models.CharField(blank=True, max_length=200, null=True)),
-                ('actual_price', models.CharField(max_length=200)),
+                (
+                    "id",
+                    models.BigAutoField(
+                        auto_created=True,
+                        primary_key=True,
+                        serialize=False,
+                        verbose_name="ID",
+                    ),
+                ),
+                ("name", models.CharField(max_length=200)),
+                ("main_category", models.CharField(max_length=200)),
+                ("sub_category", models.CharField(max_length=200)),
+                ("image", models.CharField(max_length=200)),
+                ("link", models.CharField(max_length=200)),
+                ("ratings", models.CharField(blank=True, max_length=200, null=True)),
+                (
+                    "no_of_ratings",
+                    models.CharField(blank=True, max_length=200, null=True),
+                ),
+                (
+                    "discount_price",
+                    models.CharField(blank=True, max_length=200, null=True),
+                ),
+                ("actual_price", models.CharField(max_length=200)),
             ],
         ),
     ]

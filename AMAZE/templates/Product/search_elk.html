@@ -1,0 +1,112 @@
+{% extends '../base_template.html' %}
+
+{% block content %}
+    <div class="container-fluid justify-content-center mt-4 align-items-center">
+        <ul>
+            <h4>
+                <li>
+                    <b><i>Elastic</i>Search</b> using django
+                </li>
+            </h4>
+        </ul>
+        <div class="row justify-content-center">
+            <form method="POST" class="form-control" style=" border: 0;">
+                <div class="d-flex input-group mt-4 mb-3" style="width:800px">
+                    {% csrf_token %}
+                    <input type="text" class="form-control" name="query" placeholder="Search" aria-label="Recipient's username" aria-describedby="basic-addon2">
+                        <div class="input-group-append">
+                            <button class="btn btn-success" type="submit">
+                                GO
+                            </button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <hr>
+                time:
+                {{ products.time }}
+                <br>
+                    Query:
+                    {{ products.query }}
+                    <br>
+                        Results:
+                        {{ products.no_of_results }}
+                        <br>
+                            <div class="container justify-content-center mt-4 ">
+                                <div class="row row-cols-xl-6 row-cols-lg-5 row-cols-md-4 row-cols-sm-3 row-cols-2" style="gap: 10px;">
+                                    {% if products %}
+                                        {% for product in products.queryset %}
+                                            <!-- product card using bootstrap -->
+                                            <div class="col d-flex justify-content-center ">
+                                                <div class="card" style="width: 300px;">
+                                                    <div class="imageframe d-flex justify-content-center align-items-center m-3">
+                                                        <img src="" width="180" height="200" class="cart-img-top" alt="" srcset=""></div>
+
+                                                        <div class="card-body">
+                                                            <span class="card-title">{{ product.name }}</span>
+                                                            <!-- product data according to each product -->
+                                                            <div class="card-text">
+                                                                {% if product.discount_price %}
+                                                                    <div class="card-subtitle mb-2 mt-2" style="color:rgb(22, 157, 22); font-size: 1 rem; ">
+                                                                        <span class="text-muted">Now For</span>
+                                                                        {{ product.discount_price }}
+                                                                    </div>
+                                                                {% endif %}
+                                                                {% if product.ratings %}
+                                                                    <div class="card-text" style="font-size: 1rem;">
+                                                                        {{ product.ratings }}
+                                                                        <span style="font-size: 1.2rem;font-weight: 900 ;color: rgb(237, 237, 26);">
+                                                                            ⭐
+                                                                        </span>
+                                                                        <span class="text-muted">(
+                                                                            {{ product.no_of_ratings }}
+                                                                            )</span>
+
+                                                                    </div>
+                                                                {% endif %}
+                                                                <div class="card-text" style="font-size: 1.5rem;">
+                                                                    {{ product.actual_price }}
+                                                                    <br>
+                                                                        <a href="{{ product.link }}" target="_blank" class="stretched-link" style="font-size: 1rem;">
+                                                                            view product</a>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                {% endfor %}
+                                            {% endif %}
+
+
+                                        </div>
+                                    </div>
+                                    <div class="row justify-content-center align-items-center mt-4 mb-2">
+
+                                        {% if is_paginated %}
+                                            <hr>
+                                                <div class="col flex justify-content-center mt-4" style="width: 50%;">
+                                                    <span class="border border-primary justify-content-center align-items-center" style="border-color: aquamarine; border-radius:10px; width: 100%; background-color: aliceblue;font-size: 20px;">
+                                                        <div class="container-fluid ">
+                                                            <div class="pagination">
+                                                                <span class="page-links">
+                                                                    {% if page_obj.has_previous %}
+                                                                        <a href="/search?page={{ page_obj.previous_page_number }}">previous</a>
+                                                                    {% endif %}
+                                                                    <span class="page-current">
+                                                                        Page
+                                                                        {{ page_obj.number }}
+                                                                        of
+                                                                        {{ page_obj.paginator.num_pages }}.
+                                                                    </span>
+                                                                    {% if page_obj.has_next %}
+                                                                        <a href="/search?page={{ page_obj.next_page_number }}">next</a>
+                                                                    {% endif %}
+                                                                </span>
+                                                            </div>
+                                                        </div>
+                                                    </span>
+                                                </div>
+                                            {% endif %}
+                                        </div>
+                                    </div>
+                                {% endblock %}

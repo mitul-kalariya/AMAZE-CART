@@ -2,13 +2,18 @@
 
 {% block content %}
     <div class="container-fluid justify-content-center mt-4 align-items-center">
+        <ul>
+            <h4>
+                <li> Postgres <b>Full-Text</b> Search </li>
+            </h4>
+        </ul>
         <div class="row justify-content-center">
             <form method="POST" class="form-control" style=" border: 0;">
-            <div class="d-flex input-group mt-4 mb-3">
+            <div class="d-flex input-group mt-4 mb-3" style="width:800px">
                     {% csrf_token %}
                     <input type="text" class="form-control" name="query" placeholder="Search" aria-label="Recipient's username" aria-describedby="basic-addon2">
                     <div class="input-group-append">
-                        <button class="btn btn-outline-secondary" type="submit">
+                        <button class="btn btn-warning" type="submit">
                             GO
                         </button>
                     </div>
@@ -30,7 +35,7 @@
                                 <div class="col d-flex justify-content-center ">
                                     <div class="card" style="width: 300px;">
                                         <div class="imageframe d-flex justify-content-center align-items-center m-3">
-                                            <img src="" width="180" height="200" class="cart-img-top" alt="" srcset=""></div>
+                                            <img src="{{product.image}}" width="180" height="200" class="cart-img-top" alt="" srcset=""></div>
 
                                             <div class="card-body">
                                                 <span class="card-title">{{ product.name }}</span>
