@@ -38,16 +38,13 @@ INSTALLED_APPS = [
     "django.contrib.sessions",
     "django.contrib.messages",
     "django.contrib.staticfiles",
-
-
-    'crispy_forms',
-    'crispy_bootstrap4',
+    "crispy_forms",
+    "crispy_bootstrap4",
     "customer",
     "seller",
     "authenticate",
-
 ]
-CRISPY_TEMPLATE_PACK = 'bootstrap4'
+CRISPY_TEMPLATE_PACK = "bootstrap4"
 MIDDLEWARE = [
     "django.middleware.security.SecurityMiddleware",
     "django.contrib.sessions.middleware.SessionMiddleware",
@@ -141,5 +138,5 @@ DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 
 
 AUTH_USER_MODEL = "authenticate.user"  # displays user model in authenticate application
-LOGIN_REDIRECT_URL = "auth/login/"
-LOGIN_URL = 'auth/login/'
+LOGIN_REDIRECT_URL = "login"
+LOGIN_URL = "login"

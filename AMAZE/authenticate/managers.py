@@ -40,17 +40,17 @@ class AmazeUserManager(BaseUserManager):
             email, user_name, admin_contact, password, **other_fields
         )
 
-    def create_seller(
-        self,
-        email,
-        phone,
-        user_name,
-        password,
-        **other_fields,
-    ):
-        other_fields.setdefault("is_seller", True)
-        if other_fields.get("is_seller") is not True:
-            raise ValueError("A seller must be assigned is_seller=True")
-        if not phone:
-            raise ValueError("A seller must add a phone number to add his/her account")
-        return self.create_user(email, phone, user_name, password, **other_fields)
+    # def create_seller(
+    #     self,
+    #     email,
+    #     phone,
+    #     user_name,
+    #     password,
+    #     **other_fields,
+    # ):
+    #     other_fields.setdefault("is_seller", True)
+    #     if other_fields.get("is_seller") is not True:
+    #         raise ValueError("A seller must be assigned is_seller=True")
+    #     if not phone:
+    #         raise ValueError("A seller must add a phone number to add his/her account")
+    #     return self.create_user(email, phone, user_name, password, **other_fields)

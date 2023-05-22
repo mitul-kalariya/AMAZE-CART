@@ -46,6 +46,6 @@ class RegistrationView(View):
         form = RegistrationForm(request.POST)
         if form.is_valid():
             form.save()
-            return redirect(reverse('login') + '?user_created=success')
+            return redirect(reverse("login") + "?user_created=success")
         else:
             return render(request, "authenticate/signup.html", {"form": form})

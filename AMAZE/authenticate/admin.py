@@ -43,6 +43,7 @@ class AmazeCustomUserAdmin(admin.ModelAdmin):
         ),
     )
 
-    list_display = ("email","phone", "user_name", "is_staff", "is_active", "is_seller")
+    list_display = ("email", "phone", "user_name", "is_staff", "is_active", "is_seller")
+
 
 admin.site.register(User, AmazeCustomUserAdmin)

@@ -1,0 +1,57 @@
+{% extends '../base_template.html'%} 
+{% block content %} 
+{% load crispy_forms_tags%}
+<div
+  class="d-flex align-items-center justify-content-center w-100"
+  style="padding-top: 20px"
+>
+  <div class="container w-50">
+    {% comment %} {% if form.errors %}
+    <div class="alert alert-warning alert-dismissible fade show" role="alert">
+      <strong>Error with</strong>
+      <ul>
+        {% for i in form.errors %}
+        <li>{{i.info}}</li>
+        {% endfor %}
+      </ul>
+
+      <button
+        type="button"
+        class="close"
+        data-dismiss="alert"
+        aria-label="Close"
+      >
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+    {% endif %} {% endcomment %}
+    <div class="row-md-5">
+      <div class="col">
+        <form method="POST" action="{% url 'seller:become_a_seller' %}">
+          {% csrf_token %}
+          <blockquote class="blockquote">
+            <h3>Seller Profile registration</h3>
+            <footer class="blockquote-footer">
+              please enter your details below
+            </footer>
+          </blockquote>
+          {{ form|crispy }}
+          <div
+            class="continer d-flex align-items-center justify-content-center p-4"
+          >
+            <button type="update" class="btn btn-primary btn-block w-25">
+              Register
+            </button>
+          </div>
+
+          <!-- Register buttons -->
+          <div class="text-center p-4">
+            <p>Already a member? <a href="{% url 'login'%}">Login</a></p>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+
+{% endblock %}
