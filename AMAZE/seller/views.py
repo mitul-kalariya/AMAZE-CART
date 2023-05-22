@@ -1,3 +1,4 @@
+from django.http.response import HttpResponseRedirect, HttpResponse
 from django.shortcuts import render,redirect
 from django.views.generic import View
 from .forms import SellerProfileForm
@@ -5,6 +6,7 @@ from django.db.models.signals import post_save
 from django.dispatch import receiver
 from .models import SellerProfile,Seller
 from authenticate.models import User
+from django.contrib.auth.mixins import UserPassesTestMixin
 # Create your views here.
 
 
@@ -27,11 +29,18 @@ class BecomeASeller(View):
             return redirect("")
 
 
-def check_isseller(self):
-    pass
+class SellerHomepage(UserPassesTestMixin,View):
 
-class SellerHomepage(View):
-    pass
+    def test_func(self):
+        return self.request.user.is_seller
+
+    def handle_no_permission(self) -> HttpResponseRedirect:
+        user_with_profile_request = SellerProfile.objects.filter(User=self.request.user_id,is_seller = True).first()
+        if user_with_profile_request:
+            return HttpResponse("Your profile is under check")
+        else:
+            return redirect("become_a_seller")
+
 
 
 @receiver(post_save,sender=SellerProfile)
