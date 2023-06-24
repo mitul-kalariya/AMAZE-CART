@@ -13,15 +13,12 @@ class HomeView(TemplateView):
 
 
 # @method_decorator(login_required(login_url="login"), name="dispatch")
-class PreSellerRequestView(LoginRequiredMixin,RedirectView):
-    pattern_name = "seller:become_a_seller"
+class PreSellerRequestView(LoginRequiredMixin, RedirectView):
+    pattern_name = "seller:be_a_seller"
 
     def get_redirect_url(self, *args: Any, **kwargs: Any) -> str | None:
         return super().get_redirect_url(*args, **kwargs)
 
 
-
-
 class SearchView(TemplateView):
     pass
-
